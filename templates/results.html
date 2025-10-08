@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toxic Comment Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Results for: <a href="{{ url }}" target="_blank">{{ url }}</a></h2>
+    <p>Scanned {{ total }} comments.</p>
+
+    {% if toxic_comments %}
+      <h3>🚨 Toxic Comments Detected:</h3>
+      <ul>
+        {% for c in toxic_comments %}
+          <li><strong>({{ c.score }})</strong> {{ c.text }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>✅ No toxic comments found!</p>
+    {% endif %}
+
+    <a href="/" class="back">← Back</a>
+  </div>
+</body>
+</html>
